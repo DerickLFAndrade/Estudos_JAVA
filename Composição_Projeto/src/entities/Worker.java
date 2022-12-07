@@ -67,4 +67,10 @@ public class Worker {
 		}
 		return sum;
 	}
+	@Override
+	public String toString() {
+		return "Worker: \n name: " + name + "\n level: " + level + "\n baseSalary: " + baseSalary + "\n departament: "
+				+ departament;
+	}
+	
 }
