@@ -1,9 +1,9 @@
 package entities;
 
 public class Employee {
-	private String name;
-	private Integer hours;
-	private Double valuePerHour;
+	protected String name;
+	protected Integer hours;
+	protected Double valuePerHour;
 	
 	public Employee(){
 	}
@@ -40,5 +40,10 @@ public class Employee {
 
 	public Double payment() {
 		return hours*valuePerHour;
+	}
+	@Override
+	public String toString() {
+		
+		return  this.name + " - " + "$";
 	}
 }
