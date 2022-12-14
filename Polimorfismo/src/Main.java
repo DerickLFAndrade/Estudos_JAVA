@@ -8,8 +8,8 @@ import entities.OutsourceEmployee;
 
 public class Main {
 public static void main (String[] args) {
-	Scanner sc = new Scanner(System.in);
 	Locale.setDefault(Locale.US);
+	Scanner sc = new Scanner(System.in);
 	
 	System.out.print("Enter the number of employees: ");
 	Integer n = sc.nextInt();
@@ -19,7 +19,6 @@ public static void main (String[] args) {
 		System.out.println("Employee #" + (i+1) + " data:");
 		System.out.print("Outsourced (y/n)?");
 		char ot = sc.next().charAt(0);
-		if(ot == 'n') {
 			System.out.print("Name: ");
 			String name = sc.next();
 			
@@ -29,26 +28,19 @@ public static void main (String[] args) {
 			System.out.print("Value Per Hour: ");
 			Double valuePerHour = sc.nextDouble();
 			
-			Employee employee = new Employee(name, hours, valuePerHour);
-			employers.add(employee);
+			if(ot == 'y') {
+				System.out.print("Additional Charge: ");
+				Double additionalCharge = sc.nextDouble();
+				Employee employee = new OutsourceEmployee(name, hours, valuePerHour, additionalCharge);
+				employers.add(employee);
+			}
+			else {
+				Employee employee = new Employee(name, hours, valuePerHour);
+				employers.add(employee);
+				
+				
+			}
 			
-		}
-		else if(ot == 'y') {
-			System.out.print("Name: ");
-			String name = sc.next();
-			
-			System.out.print("Hours: ");
-			Integer hours = sc.nextInt();
-			
-			System.out.print("Value Per Hour: ");
-			Double valuePerHour = sc.nextDouble();
-			
-			System.out.print("Additional Charge: ");
-			Double additionalCharge = sc.nextDouble();
-			
-			Employee employee = new OutsourceEmployee(name, hours, valuePerHour, additionalCharge);
-			employers.add(employee);
-		}
 	}
 	
 	System.out.println("Payments: ");

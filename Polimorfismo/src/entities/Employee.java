@@ -42,8 +42,7 @@ public class Employee {
 		return hours*valuePerHour;
 	}
 	@Override
-	public String toString() {
-		
-		return  this.name + " - " + "$";
+	public String toString() {	
+		return  this.name + " - " + "$" + payment();
 	}
 }
