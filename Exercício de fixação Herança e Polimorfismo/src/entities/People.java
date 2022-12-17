@@ -21,6 +21,4 @@ public abstract class People {
 	}
 	
 	public abstract Double totalTaxes();
-	
-	
 }

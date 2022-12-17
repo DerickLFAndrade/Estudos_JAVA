@@ -10,7 +10,12 @@ public class CNPJ  extends People{
 
 	@Override
 	public Double totalTaxes() {
-		return getAnnualIncome() * totalEmployees;
+		if(this.totalEmployees > 10) {
+			return this.getAnnualIncome()/100*14;
+		}
+		else {
+			return this.getAnnualIncome()/100*16;
+		}
 	}
 
 }
