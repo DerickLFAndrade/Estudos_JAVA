@@ -5,16 +5,16 @@ public class CPF extends People {
 
 	public CPF(String name, Double annualIncome, Double healthExpenses) {
 		super(name, annualIncome);
-		this.healthExpenses = annualIncome;
+		this.healthExpenses = healthExpenses;
 	}
 
 	@Override
 	public Double totalTaxes() {
-		if (this.healthExpenses > 0) {
+		if (this.healthExpenses > 0.00) {
 			if (this.getAnnualIncome() < 20000) {
-				return (this.healthExpenses / 100)*50 - (this.getAnnualIncome() / 100)*15 ;
+				return this.getAnnualIncome()/100*15 - this.healthExpenses/100*50;
 			} else {
-				return (this.healthExpenses / 100)*50 - (this.getAnnualIncome() / 100)*25 ;
+				return this.getAnnualIncome()/100*25 - this.healthExpenses/100*50;
 			}
 		} 
 		

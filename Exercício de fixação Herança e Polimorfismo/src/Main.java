@@ -42,13 +42,14 @@ public static void main (String[] args) {
 		
 	}
 	
-	System.out.println("Taxes paid: ");
+	System.out.println("\nTaxes paid: ");
 	Double totalTaxes = 0.00;
 	for (People c : list) {
 		System.out.println(c.getName()+": $"+ c.totalTaxes());
 		totalTaxes += c.totalTaxes();
 	}
-	System.out.println("Total Taxes: ");
+	
+	System.out.println("\nTotal Taxes: ");
 	System.out.println(totalTaxes);
 	sc.close();
 }
