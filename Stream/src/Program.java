@@ -1,25 +1,42 @@
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Scanner;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 public class Program {
 public static void main (String[] args) {
-	Scanner sc = new Scanner(System.in);
 	
-	List<Integer> list = Arrays.asList(3,4,5,10, 7);
+	String path = "c:\\temp\\in.txt\\";
 	
-	Stream<Integer> st1 = list.stream().map(x -> x*10);	
-	System.out.println(Arrays.toString(st1.toArray()));
+	try(BufferedReader br = new BufferedReader(new FileReader(path))){
+		
+		List<Product> list = new ArrayList<>();
+		
+		String line = br.readLine();
+		while(line != null) {
+			String[] fields = line.split(",");
+			list.add( new Product(fields[0], Double.parseDouble(fields[1])));
+			line = br.readLine();
+		}
+		
+		double avg = list.stream().map(p -> p.getPrice()).reduce(0.0, (x,y) -> x + y) / list.size();
+		
+		System.out.println("Average price: " + String.format("%.2f", avg));
+		
+		Comparator<String> comp = (s1, s2) -> s1.toUpperCase().compareTo(s2.toUpperCase());
+				
+		List<String> names = list.stream().filter(p -> p.getPrice() < avg).map(p -> p.getName()).sorted(comp.reversed()).collect(Collectors.toList());
+		
+		names.forEach(System.out::println);
+		
+		}
+	catch(IOException e) {
+		e.printStackTrace();
+	}
 	
-	Stream<String> st2 = Stream.of("Maria", "Alex", "Bob");
-	System.out.println(Arrays.toString(st2.toArray()));
 	
-	Stream<Integer> st3 = Stream.iterate(0, x-> x +2);
-	System.out.println(Arrays.toString(st3.limit(10).toArray()));
-	
-	Stream<Long> st4 = Stream.iterate(new Long[] {0L, 1L}, p -> new Long[] {p[1], p[0]+p[1]}).map(p -> p[0]);
-	System.out.println(Arrays.toString(st4.limit(10).toArray()));
-	sc.close();
 }
 }
